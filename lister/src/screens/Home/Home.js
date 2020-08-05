@@ -2,7 +2,7 @@ import React from 'react'
 import { View, Text, StyleSheet } from 'react-native'
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import Icon from 'react-native-vector-icons/Ionicons';
-import {All, Lists, Completed, Settings} from '..'
+import {All, Lists, Completed, Settings, New} from '..'
 
 const styles = StyleSheet.create({
     container: {
@@ -21,15 +21,24 @@ const Home = () => {
             tabBarOptions={{
                 activeTintColor: 'lightsalmon',
                 inactiveTintColor: 'gray',
+                style: {
+                    backgroundColor: 'beige',
+                },
             }}
             screenOptions={({ route }) => ({
                 tabBarIcon: ({ focused, color, size }) => {
                   let iconName;
       
-                  if (route.name === 'Home') {
-                    iconName = 'Home'
+                  if (route.name === 'ToDo') {
+                    iconName = 'pricetags-sharp'
+                  } else if (route.name === 'Lists') {
+                    iconName = 'list-circle'
+                  } else if (route.name === 'Completed') {
+                    iconName = 'checkmark-done-circle-sharp'
+                  } else if (route.name === 'New') {
+                    iconName = 'add-circle-sharp'
                   } else if (route.name === 'Settings') {
-                    iconName = 'Settings'
+                    iconName = 'md-settings-sharp'
                   }
       
                   // You can return any component that you like here!
@@ -40,6 +49,7 @@ const Home = () => {
             <Tab.Screen name="ToDo" component={All} />
             <Tab.Screen name="Lists" component={Lists} />
             <Tab.Screen name="Completed" component={Completed} />
+            <Tab.Screen name="New" component={New} />
             <Tab.Screen name="Settings" component={Settings} />
         </Tab.Navigator>
     )
