@@ -1,10 +1,10 @@
 import React from 'react';
 import {View, Text} from 'react-native';
-import {Home} from './screens'
+import {Home, All} from './screens'
 
 const App = () => {
   return (
-    <Home/>
+    <All/>
   );
 };
 

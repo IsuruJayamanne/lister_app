@@ -1,5 +1,6 @@
 import React from 'react'
 import { View, Text, StyleSheet } from 'react-native'
+import ListCard from '../../components/ListCard/ListCard'
 
 const styles = StyleSheet.create({
     container: {
@@ -10,12 +11,13 @@ const styles = StyleSheet.create({
     }
 });
 
-const Home = () => {
+const All = () => {
     return (
         <View style={styles.container}>
-            <Text>Home 1</Text>
+            <Text>All</Text>
+            <ListCard/>
         </View>
     )
 }
 
-export default Home;
+export default All
