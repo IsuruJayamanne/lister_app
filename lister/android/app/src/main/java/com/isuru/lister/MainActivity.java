@@ -1,4 +1,4 @@
-package com.lister;
+package com.isuru.lister;
 
 import com.facebook.react.ReactActivity;
 
