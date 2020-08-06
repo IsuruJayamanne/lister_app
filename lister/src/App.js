@@ -1,14 +1,45 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import {View, Text} from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import {Home, Login} from './screens';
+import auth from '@react-native-firebase/auth'
+//import {UserHandle} from './components/UserHandle';
 
-const App = () => {
+function UserHandle() {
+  // Set an initializing state whilst Firebase connects
+const [initializing, setInitializing] = useState(true);
+const [user, setUser] = useState();
+
+// Handle user state changes
+function onAuthStateChanged(user) {
+  setUser(user);
+  if (initializing) setInitializing(false);
+}
+
+useEffect(() => {
+  const subscriber = auth().onAuthStateChanged(onAuthStateChanged);
+  return subscriber; // unsubscribe on unmount
+}, []);
+
+if (initializing) return null;
+
+if (!user) {
   return (
-    <NavigationContainer>
-      <Home/>
-    </NavigationContainer>
+    <Login/>
   );
-};
+}
 
-export default App;
+return (
+    <Home/>
+);
+}
+
+export default class App extends React.Component {
+  render(){
+    return (
+        
+          <UserHandle/>
+        
+    );
+  }
+};

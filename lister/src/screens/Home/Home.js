@@ -3,6 +3,7 @@ import { View, Text, StyleSheet } from 'react-native'
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import Icon from 'react-native-vector-icons/Ionicons';
 import {All, Lists, Completed, Settings, New} from '..'
+import { NavigationContainer } from '@react-navigation/native';
 
 const styles = StyleSheet.create({
     container: {
@@ -17,6 +18,7 @@ const Tab = createBottomTabNavigator();
 
 const Home = () => {
     return (
+        <NavigationContainer>
         <Tab.Navigator
             tabBarOptions={{
                 activeTintColor: 'lightsalmon',
@@ -52,6 +54,7 @@ const Home = () => {
             <Tab.Screen name="New" component={New} />
             <Tab.Screen name="Settings" component={Settings} />
         </Tab.Navigator>
+        </NavigationContainer>
     )
 }
 
