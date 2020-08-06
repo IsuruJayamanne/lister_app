@@ -47,15 +47,14 @@ const Login = () => {
               </Block>
               <Block>
                 <Input placeholder="Email Address"  placeholderTextColor="black" color="black" style={styles.input}
-//                  onChange = {(Value)=> this.setState({email : Value})}
-//                    onChange={this.handleKeywordsChange}
+
                     // onChangeText={(val) => this.updateInputVal(val, 'email')}
                     // value={this.state.email}
 //                  onBlur = {()=>this.empty_mobile_number_validator()}
                 />
-                <Text style={{color : 'red',marginLeft:20}}>{this.state.error_mobile_number}</Text>
+                {/* <Text style={{color : 'red',marginLeft:20}}>{this.state.error_mobile_number}</Text> */}
                 <Input placeholder= "Password" password viewPass placeholderTextColor="black" color="black" iconColor="black" style={styles.input}
-//                  onChange = {(Value)=> this.setState({password : Value})}
+
                     //  onChangeText={(val) => this.updateInputVal(val, 'password')}
                     //  value={this.state.password}
                   //onBlur = {()=>this.empty_password_validator()}
@@ -67,12 +66,18 @@ const Login = () => {
               <Button
                 shadowless
                 style={styles.button}
-                //color={materialTheme.COLORS.GREEN}
-                
-//                onPress={() => navigation.navigate('App')}
+                color={'orange'}
                 //onPress={() => this.handleLogin()}
                 >
                 Login
+              </Button>
+              <Button
+                shadowless
+                style={styles.button}
+                color={'palegreen'}
+                //onPress={() => this.handleLogin()}
+                >
+                Sign Up
               </Button>
               {/* <Block row>
               <Text color="black"> Do not have an account? </Text>
