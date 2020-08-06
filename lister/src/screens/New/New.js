@@ -2,6 +2,7 @@ import React from 'react'
 import { View, Text, StyleSheet, TextInput } from 'react-native'
 import auth from '@react-native-firebase/auth'
 import { Button } from 'galio-framework';
+import firestore from '@react-native-firebase/firestore';
 
 const styles = StyleSheet.create({
     container: {
@@ -32,7 +33,7 @@ export default class Settings extends React.Component {
           description: "",
           
         }
-        //this.handleSignOut = this.handleSignOut.bind(this);
+        this.handleAdd = this.handleAdd.bind(this);
       }
 
 
@@ -41,6 +42,23 @@ export default class Settings extends React.Component {
         const state = this.state;
         state[prop] = val;
         this.setState(state);
+    }
+
+    async handleAdd() {
+        var user = auth().currentUser;
+        const { item, description} = this.state;
+
+        await firestore()
+            .collection(user.uid)
+            .add({
+                name: item,
+                description: description,
+            })
+            .then(() => {
+                console.log('User added!');
+            });
+
+        this.setState({item: "", description: ""});
     }
 
     render(){
@@ -67,7 +85,7 @@ export default class Settings extends React.Component {
                     <View style={styles.row}>
                         <Button
                             color="#ff7f50"
-                            onPress={() => this.handleSignOut()}
+                            onPress={() => this.handleAdd()}
                         >
                             Add
                         </Button>
