@@ -6,7 +6,7 @@ import {Home, Login} from './screens';
 const App = () => {
   return (
     <NavigationContainer>
-      <Login/>
+      <Home/>
     </NavigationContainer>
   );
 };
