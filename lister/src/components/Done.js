@@ -13,7 +13,6 @@ const styles = StyleSheet.create({
         height: 55, 
         backgroundColor: "darkkhaki",
         marginTop: 5,
-        marginBottom: 5,
         marginLeft: 3,
         marginRight: 3,
     },
