@@ -60,7 +60,7 @@ function Done({ id, name, status, description, time }) {
             <Text style={{fontWeight: "bold", fontSize: 25}}>{name}</Text>
             <View style={styles.info}>
                     <Text >{" "+description}</Text>
-                    <Text >{moment(time).fromNow()}</Text>
+                    <Text style={{color: 'slategray'}}>{moment(time).fromNow()}</Text>
             </View>
         </View>
         <View style={styles.button}>
