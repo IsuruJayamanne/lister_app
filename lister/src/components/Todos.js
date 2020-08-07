@@ -20,13 +20,14 @@ function Todos() {
         return ref.onSnapshot((querySnapshot) => {
             const list = [];
             querySnapshot.forEach(doc => {
-              const { name, status, description } = doc.data();
+              const { name, status, description, time } = doc.data();
               if (status){
                 list.push({
                     id: doc.id,
                     name,
                     status,
                     description,
+                    time,
                 });
                 }
             });
