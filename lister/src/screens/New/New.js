@@ -48,6 +48,8 @@ export default class Settings extends React.Component {
     async handleAdd() {
         var user = auth().currentUser;
         const { item, description} = this.state;
+        var timeN = new Date();
+        console.log(timeN);
 
         this.setState({isLoading: true});
         await firestore()
@@ -56,6 +58,7 @@ export default class Settings extends React.Component {
                 name: item,
                 description: description,
                 status: true,
+                time: timeN,
             })
             .then(() => {
                 console.log('User added!');
@@ -73,7 +76,7 @@ export default class Settings extends React.Component {
                     <View style={styles.row}>
                         <Text style={{fontSize: 25}}>    Item: </Text>
                         <TextInput
-                            style={{ height: 40, fontSize: 20, width: 200, borderColor: 'gray', borderWidth: 1 }}
+                            style={{ height: 40, fontSize: 16, width: 200, borderColor: 'gray', borderWidth: 1 }}
                             onChangeText={(val) => this.updateInputVal(val, 'item')}
                             value={this.state.item}
                         />

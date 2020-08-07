@@ -2,8 +2,30 @@ import React from 'react';
 import firestore from '@react-native-firebase/firestore';
 import { List } from 'react-native-paper';
 import auth from '@react-native-firebase/auth'
-import { View, Text } from 'react-native';
+import { View, Text, StyleSheet } from 'react-native';
 import { Provider as PaperProvider } from 'react-native-paper';
+import {Button } from 'galio-framework';
+
+const styles = StyleSheet.create({
+    listCard: {
+        flexDirection: 'row', 
+        height: 55, 
+        backgroundColor: "darkseagreen",
+        marginTop: 5,
+        marginBottom: 5,
+        marginLeft: 3,
+        marginRight: 3,
+    },
+    name: {
+        flex: 0.7,
+        marginLeft: 10,
+    },
+    button: {
+        flex: 0.3,
+        backgroundColor: "darkseagreen",
+        alignItems: 'flex-end',
+    }
+});
 
 function Done({ id, name, status, description }) {
     console.log(name);
@@ -18,19 +40,23 @@ function Done({ id, name, status, description }) {
   }
 
   return (
-      <View style={{flexDirection: 'row'}}>
-          {/* <Text>{name}</Text> */}
-          
-          <List.Item
-            title="My name"
+    <View style={styles.listCard}>
+        <View style={styles.name}>
+            <Text style={{fontWeight: "bold", fontSize: 25}}>{name}</Text>
+            <Text >{" "+description}</Text>
+        </View>
+        <View style={styles.button}>
+            <Button 
+            color="#e9967a" 
+            style={{ width: 80, height: 40 }}
             onPress={() => toggleComplete()}
-            left={props => (
-                <List.Icon {...props} icon={status ? 'check' : 'cancel'} />
-            )}
-            />
-      </View>
-    
-  );
+            >
+            Restore
+            </Button>
+        </View>
+    </View>
+        
+ );
 }
 
 export default React.memo(Done);
