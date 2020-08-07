@@ -11,19 +11,19 @@ const styles = StyleSheet.create({
     listCard: {
         flexDirection: 'row', 
         height: 55, 
-        backgroundColor: "darkseagreen",
+        backgroundColor: "darkkhaki",
         marginTop: 5,
         marginBottom: 5,
         marginLeft: 3,
         marginRight: 3,
     },
     name: {
-        flex: 0.7,
+        flex: 0.67,
         marginLeft: 10,
     },
     button: {
-        flex: 0.3,
-        backgroundColor: "darkseagreen",
+        flexDirection: 'row',
+        flex: 0.33,
         alignItems: 'flex-end',
     },
     info: {
@@ -44,6 +44,16 @@ function Done({ id, name, status, description, time }) {
         status: true,
       });
   }
+  async function toggleComplete() {
+    var user = auth().currentUser;
+    await firestore()
+      .collection(user.uid)
+      .doc(id)
+      .delete()
+        .then(() => {
+            console.log('User deleted!');
+        });
+  }
 
   return (
     <View style={styles.listCard}>
@@ -56,12 +66,22 @@ function Done({ id, name, status, description, time }) {
         </View>
         <View style={styles.button}>
             <Button 
-            color="#e9967a" 
-            style={{ width: 80, height: 40 }}
+            color="darkseagreen" 
+            style={{ width: 60, height: 40 }}
             onPress={() => toggleComplete()}
             >
             Restore
             </Button>
+            <Button 
+            onlyIcon 
+            icon="close" 
+            iconFamily="antdesign" 
+            iconSize={20} 
+            color="danger" 
+            iconColor="#fff" 
+            style={{ width: 40, height: 40 }}
+            onPress={() => toggleComplete()}
+            >Delete</Button>
         </View>
     </View>
         
