@@ -14,6 +14,7 @@ const Lists = () => {
     return (
         <View style={styles.container}>
             <Text>Lists</Text>
+
         </View>
     )
 }

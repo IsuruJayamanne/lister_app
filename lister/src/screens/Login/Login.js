@@ -45,7 +45,8 @@ export default class Login extends React.Component {
           password : "",
           error_mobile_number : "",
           error_password : "",
-          errorMessage: null
+          errorMessage: null,
+          isLoading: false,
     
         }
         this.handleLogin = this.handleLogin.bind(this);
@@ -59,12 +60,13 @@ export default class Login extends React.Component {
         this.setState(state);
     }
 
-    handleLogin() {
+    async handleLogin() {
         console.log("test2");
         const { email, password } = this.state;
         if (email != ""){
             if (password != ""){
-                auth()
+                this.setState({isLoading: true});
+                await auth()
                     .signInWithEmailAndPassword(email.toString(), password.toString())
                     .then(() => {
                         console.log('signed in!');
@@ -81,17 +83,19 @@ export default class Login extends React.Component {
                         }
                         console.error(error);
                     });
+                this.setState({isLoading: false});
             }
         }
     }
 
-    handleSignUp() {
+    async handleSignUp() {
         console.log("test1");
         const { email, password } = this.state;
         if (email != ""){
             if (password != ""){
                 console.log("test3");
-                auth()
+                this.setState({isLoading: true});
+                await auth()
                     .createUserWithEmailAndPassword(email, password)
                     .then(() => {
                         console.log('User account created & signed in!');
@@ -108,6 +112,7 @@ export default class Login extends React.Component {
                         }
                         console.error(error);
                 });
+                this.setState({isLoading: false});
         }   }
     }
 
@@ -146,6 +151,7 @@ export default class Login extends React.Component {
                     shadowless
                     style={styles.button}
                     color={'orange'}
+                    loading={this.state.isLoading}
                     onPress={() => this.handleLogin()}
                     >
                     Login
@@ -154,6 +160,7 @@ export default class Login extends React.Component {
                     shadowless
                     style={styles.button}
                     color={'yellowgreen'}
+                    loading={this.state.isLoading}
                     onPress={() => this.handleSignUp()}
                     >
                     Sign Up

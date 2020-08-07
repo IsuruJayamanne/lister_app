@@ -31,6 +31,7 @@ export default class Settings extends React.Component {
         this.state={
           item : "",
           description: "",
+          isLoading: false,
           
         }
         this.handleAdd = this.handleAdd.bind(this);
@@ -48,17 +49,20 @@ export default class Settings extends React.Component {
         var user = auth().currentUser;
         const { item, description} = this.state;
 
+        this.setState({isLoading: true});
         await firestore()
             .collection(user.uid)
             .add({
                 name: item,
                 description: description,
+                status: true,
             })
             .then(() => {
                 console.log('User added!');
             });
 
         this.setState({item: "", description: ""});
+        this.setState({isLoading: false});
     }
 
     render(){
@@ -67,7 +71,7 @@ export default class Settings extends React.Component {
                 <Text>New</Text>
                 <View style={styles.card}>
                     <View style={styles.row}>
-                        <Text style={{fontSize: 25}}>            Item: </Text>
+                        <Text style={{fontSize: 25}}>    Item: </Text>
                         <TextInput
                             style={{ height: 40, fontSize: 20, width: 200, borderColor: 'gray', borderWidth: 1 }}
                             onChangeText={(val) => this.updateInputVal(val, 'item')}
@@ -75,17 +79,21 @@ export default class Settings extends React.Component {
                         />
                     </View>
                     <View style={styles.row}>
-                        <Text style={{fontSize: 25}}>Description: </Text>
+                        <Text style={{fontSize: 15}}>Description: </Text>
                         <TextInput
-                            style={{ height: 80, fontSize: 20, width: 200, borderColor: 'gray', borderWidth: 1 }}
+                            style={{ height: 80, fontSize: 15, width: 200, borderColor: 'gray', borderWidth: 1 }}
                             onChangeText={(val) => this.updateInputVal(val, 'description')}
                             value={this.state.description}
+                            textAlignVertical="top"
+                            multiline={true}
                         />
                     </View>
                     <View style={styles.row}>
+                        <Text>                </Text>
                         <Button
                             color="#ff7f50"
                             onPress={() => this.handleAdd()}
+                            loading={this.state.isLoading}
                         >
                             Add
                         </Button>
