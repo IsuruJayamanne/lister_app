@@ -15,7 +15,6 @@ const styles = StyleSheet.create({
 const All = () => {
     return (
         <View style={styles.container}>
-            <Text>All</Text>
             <Todos/>
         </View>
     )

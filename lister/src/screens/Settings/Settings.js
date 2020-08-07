@@ -36,11 +36,14 @@ export default class Settings extends React.Component {
         console.log(user);
         return (
             <View style={styles.container}>
-                <Text>Settings</Text>
-                <Text>{user.email}</Text>
+                <View style={{flexDirection: 'row', justifyContent: 'center', marginTop:40}}>
+                    <Text style={{fontSize:20, color:'chocolate'}}>Current User: </Text>
+                    <Text style={{fontSize:20}}>{user.email}</Text>
+                </View>
                 <Button
-                    color="#d2b48c"
+                    color="orangered"
                     onPress={() => this.handleSignOut()}
+                    style={{marginTop:25}}
                 >
                     Sign Out
                 </Button>

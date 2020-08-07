@@ -71,7 +71,6 @@ export default class Settings extends React.Component {
     render(){
         return (
             <View style={styles.container}>
-                <Text>New</Text>
                 <View style={styles.card}>
                     <View style={styles.row}>
                         <Text style={{fontSize: 25}}>    Item: </Text>

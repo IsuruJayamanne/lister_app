@@ -14,7 +14,6 @@ const styles = StyleSheet.create({
 const Completed = () => {
     return (
         <View style={styles.container}>
-            <Text>Completed</Text>
             <Completed1 />
         </View>
     )
