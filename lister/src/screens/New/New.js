@@ -48,7 +48,7 @@ export default class Settings extends React.Component {
     async handleAdd() {
         var user = auth().currentUser;
         const { item, description} = this.state;
-        var timeN = new Date();
+        var timeN = Date.now();
         console.log(timeN);
 
         this.setState({isLoading: true});

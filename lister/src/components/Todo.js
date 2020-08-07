@@ -33,7 +33,7 @@ const styles = StyleSheet.create({
 });
 
 function Todo({ id, name, status, description, time }) {
-    console.log(name);
+    console.log(name + time);
   async function toggleComplete() {
     var user = auth().currentUser;
     await firestore()

@@ -43,7 +43,7 @@ function Done({ id, name, status, description, time }) {
         status: true,
       });
   }
-  async function toggleComplete() {
+  async function toggleDelete() {
     var user = auth().currentUser;
     await firestore()
       .collection(user.uid)
@@ -79,7 +79,7 @@ function Done({ id, name, status, description, time }) {
             color="danger" 
             iconColor="#fff" 
             style={{ width: 40, height: 40 }}
-            onPress={() => toggleComplete()}
+            onPress={() => toggleDelete()}
             >Delete</Button>
         </View>
     </View>
