@@ -33,8 +33,8 @@ const Home = () => {
       
                   if (route.name === 'ToDo') {
                     iconName = 'pricetags-sharp'
-                  } else if (route.name === 'Lists') {
-                    iconName = 'list-circle'
+                  } else if (route.name === 'Info') {
+                    iconName = 'information-circle-sharp'
                   } else if (route.name === 'Completed') {
                     iconName = 'checkmark-done-circle-sharp'
                   } else if (route.name === 'New') {
@@ -48,8 +48,8 @@ const Home = () => {
                 },
             })}
         >
+            <Tab.Screen name="Info" component={Lists} />
             <Tab.Screen name="ToDo" component={All} />
-            <Tab.Screen name="Lists" component={Lists} />
             <Tab.Screen name="Completed" component={Completed} />
             <Tab.Screen name="New" component={New} />
             <Tab.Screen name="Settings" component={Settings} />
