@@ -1,5 +1,6 @@
 import React from 'react'
 import { View, Text, StyleSheet } from 'react-native'
+import { BannerAd, BannerAdSize, TestIds } from '@react-native-firebase/admob';
 
 const styles = StyleSheet.create({
     container: {
@@ -9,14 +10,20 @@ const styles = StyleSheet.create({
         alignItems: 'center',
     },
     c2: {
-        flex: 0.5,
+        flex: 0.4,
         alignItems: "center",
         justifyContent: 'center'
     },
     c3: {
-        flex: 0.5,
+        flex: 0.4,
         alignItems: "center",
-        justifyContent: 'center'
+        justifyContent: 'flex-end',
+        //backgroundColor: 'orange'
+    },
+    c4: {
+        flex: 0.2,
+        alignItems: "center",
+        justifyContent: 'flex-end'
     }
 });
 
@@ -32,7 +39,13 @@ const Lists = () => {
                 <Text style={{fontSize: 25}}>J M A I U Jayamanne</Text>
                 <Text style={{fontSize: 25}}>17000645</Text>
             </View>
-
+            <View style={styles.c4}>
+                <BannerAd 
+                    unitId={TestIds.BANNER} 
+                    size={BannerAdSize.FULL_BANNER}
+                    requestOptions={{requestNonPersonalizedAdsOnly: true,}}
+                />
+            </View>
         </View>
     )
 }
