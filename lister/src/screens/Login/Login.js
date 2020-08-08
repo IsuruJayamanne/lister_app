@@ -121,7 +121,6 @@ export default class Login extends React.Component {
 
         return (
             <View style={styles.container}>
-                <Text>Login</Text>
                 <KeyboardAvoidingView behavior="padding" enabled style={styles.container}>
             <StatusBar barStyle="light-content" />
 
