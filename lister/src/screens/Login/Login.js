@@ -12,6 +12,13 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'center',
     },
+    c2: {
+        width: '100%',
+        flex: 0.3,
+        backgroundColor: 'palegoldenrod',
+        alignItems: 'center',
+        justifyContent: 'center',
+    },
     padded: {
         paddingHorizontal: theme.SIZES.BASE * 1,
         position: 'relative',
@@ -45,7 +52,7 @@ export default class Login extends React.Component {
           password : "",
           error_mobile_number : "",
           error_password : "",
-          errorMessage: null,
+          errorMessage: "",
           isLoading: false,
     
         }
@@ -58,6 +65,7 @@ export default class Login extends React.Component {
         const state = this.state;
         state[prop] = val;
         this.setState(state);
+        this.setState({errorMessage: ""});
     }
 
     async handleLogin() {
@@ -72,15 +80,19 @@ export default class Login extends React.Component {
                         console.log('signed in!');
                     })
                     .catch(error => {
-                        if (error.code === 'auth/email-already-in-use') {
+                        if (error.code === 'auth/wrong-password') {
                             //console.log('That email address is already in use!');
-                            this.setState({ errorMessage: 'That email address is already in use!' });
+                            this.setState({ errorMessage: 'Password is incorrect!' });
                         }
-
                         if (error.code === 'auth/invalid-email') {
                             this.setState({ errorMessage: 'That email address is invalid!' });
                         
                         }
+                        if (error.code === 'auth/user-not-found') {
+                            this.setState({ errorMessage: 'email not registered. use sign up to register' });
+                        
+                        }
+                        
                         console.error(error);
                     });
                 this.setState({isLoading: false});
@@ -110,6 +122,10 @@ export default class Login extends React.Component {
                             this.setState({ errorMessage: 'That email address is invalid!' });
                         
                         }
+                        if (error.code === 'auth/weak-password') {
+                            this.setState({ errorMessage: 'weak password! minimum length is 6 characters' });
+                        
+                        }
                         console.error(error);
                 });
                 this.setState({isLoading: false});
@@ -120,14 +136,16 @@ export default class Login extends React.Component {
         //const { navigation } = this.props;
 
         return (
+    
             <View style={styles.container}>
+                <View style={styles.c2}></View>
                 <KeyboardAvoidingView behavior="padding" enabled style={styles.container}>
             <StatusBar barStyle="light-content" />
 
             <Block row flex space="around" style={{ zIndex:2 }}>
             <Block flex center>            
                 <Block>
-                    <Text color="Black" size={60}>LOGIN</Text>
+                    <Text color="black" size={60}>LOGIN</Text>
                 </Block>
                 <Block>
                     <Input placeholder="Email Address"  placeholderTextColor="black" color="black" style={styles.input}
@@ -175,7 +193,7 @@ export default class Login extends React.Component {
             </Block>
             </Block>
             </KeyboardAvoidingView>
-            
+            <View style={styles.c2}></View>
             </View>
         );
     }
