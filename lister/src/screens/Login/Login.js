@@ -93,7 +93,7 @@ export default class Login extends React.Component {
                         
                         }
                         
-                        console.error(error);
+                        console.log(error);
                     });
                 this.setState({isLoading: false});
             }
@@ -126,7 +126,7 @@ export default class Login extends React.Component {
                             this.setState({ errorMessage: 'weak password! minimum length is 6 characters' });
                         
                         }
-                        console.error(error);
+                        console.log(error);
                 });
                 this.setState({isLoading: false});
         }   }
